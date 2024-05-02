@@ -33,7 +33,6 @@ app.post('/api/file', upload.single('file') ,async (req, res) => {
     // 5- Transform CSV to JSON
     json = csvtoJson.fieldDelimiter(',').csvStringToJson(csv)
     // 6- Save JSON to DB (pending)
-    console.log(json)
     userData = json
 
   } catch (error) {
