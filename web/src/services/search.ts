@@ -1,6 +1,8 @@
+import { API_HOST } from "../config"
+
 export const searchData = async (query: string): Promise<[Error?, Data?]> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/users?q=${query}`)
+    const res = await fetch(`${API_HOST}/api/users?q=${query}`)
 
     if(!res.ok) {
       return [new Error(`Error searching user data: ${res.statusText}`)]
