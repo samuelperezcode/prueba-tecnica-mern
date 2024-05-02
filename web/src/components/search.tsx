@@ -3,7 +3,10 @@ import { searchData } from "../services/search"
 import {toast} from 'sonner'
 
 export  function Search({initialData}: {initialData: Data}) {
-  const [search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState<string>(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get('q') ?? ''
+  })
   const [users, setUsers] = useState<Data>(initialData)
  
 
@@ -44,10 +47,10 @@ export  function Search({initialData}: {initialData: Data}) {
     <section>
       <h1>Search</h1>
       <form action="">
-        <input type="search" onChange={handleSearch} placeholder="Search user info..."/>
+        <input type="search" onChange={handleSearch} placeholder="Search user info..." defaultValue={search}/>
       </form>
 
-      <ul>
+      <ul className="table-data"> 
         {
           users.map( userData => (
             <li key={userData.Id}>
