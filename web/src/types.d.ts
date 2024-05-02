@@ -4,3 +4,7 @@ type ApiUploadResponse = {
   message: string,
   data: Data
 }
+
+type ApiSearchResponse = {
+  data: Data
+}
