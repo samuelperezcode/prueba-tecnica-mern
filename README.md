@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center"><a aria-label="NextJs Monorepo" href="https://github.com/samuelperezcode">User Management project (MERN stack)</a></h1>
+  <h1 align="center"><a aria-label="NextJs Monorepo" href="https://github.com/samuelperezcode/prueba-tecnica-mern">User Management project (MERN stack)</a></h1>
   <p align="center"><strong>Monorepo, using Express.js and React </strong></p>
 </div>
 
@@ -36,9 +36,6 @@ Some convenience scripts can be run in any folder of this repo and will call the
 
 ### Linters
 
-See an example in [./apps/nextjs-app/.eslintrc.js](./apps/nextjs-app/.eslintrc.js) and our
-[eslint-config-bases](./packages/eslint-config-bases/README.md).
-
 ### Hooks / Lint-staged
 
 Check the [.husky](./.husky) folder content to see what hooks are enabled. Lint-staged is used to guarantee
@@ -48,6 +45,6 @@ that lint and prettier are applied automatically on commit and/or pushes.
 
 ### CI
 
-## 7. Deploy
+## Deploy
 
 ## License
