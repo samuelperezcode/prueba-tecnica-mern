@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { searchData } from "../services/search"
 import {toast} from 'sonner'
+import { useDebounce } from "@uidotdev/usehooks"
+
+const DEBOUNCE_TIME = 300
 
 export  function Search({initialData}: {initialData: Data}) {
   const [search, setSearch] = useState<string>(() => {
@@ -8,6 +11,7 @@ export  function Search({initialData}: {initialData: Data}) {
     return searchParams.get('q') ?? ''
   })
   const [users, setUsers] = useState<Data>(initialData)
+  const debouncedSearch = useDebounce(search, DEBOUNCE_TIME)
  
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,19 +19,19 @@ export  function Search({initialData}: {initialData: Data}) {
   }
 
   useEffect(() => {
-    const newPathname = search === '' 
+    const newPathname = debouncedSearch === '' 
       ? window.location.pathname 
-      : `?q=${search}`
+      : `?q=${debouncedSearch}`
     
     window.history.replaceState({}, '', newPathname)
-  }, [search])
+  }, [debouncedSearch])
 
   useEffect(() => {
-    if(!search) {
+    if(!debouncedSearch) {
       setUsers(initialData)
       return
     }
-    searchData(search)
+    searchData(debouncedSearch)
       .then(
         res => {
           const [err, newData] = res
@@ -41,7 +45,7 @@ export  function Search({initialData}: {initialData: Data}) {
           }
         }
       )
-  }, [search, initialData])
+  }, [debouncedSearch, initialData])
 
   return (
     <section>
